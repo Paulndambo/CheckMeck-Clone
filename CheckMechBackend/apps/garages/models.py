@@ -1,6 +1,7 @@
-from django.db import models
-from django.conf import settings
 from apps.core.models import AbstractBaseModel
+from django.conf import settings
+from django.db import models
+
 # Create your models here.
 SERVICE_PROVIDER_TYPES = (
     ("garage", "Garage"),
@@ -41,6 +42,7 @@ class Garage(AbstractBaseModel):
     country = models.CharField(max_length=255)
     subscription = models.CharField(max_length=255, choices=SUBSCRIPTION_TYPES, default='freemium')
     subscription_status = models.CharField(max_length=255, choices=SUBSCRIPTION_STATUS_CHOICES, default="active")
+
 
     def __str__(self):
         return self.name
