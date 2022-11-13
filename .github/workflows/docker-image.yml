@@ -28,6 +28,6 @@ jobs:
     steps:
     - uses: actions/checkout@
     - name: Print Commit Text
-      run: - echo $COMMIT_TEXT
+      run: echo $COMMIT_TEXT
 
 
