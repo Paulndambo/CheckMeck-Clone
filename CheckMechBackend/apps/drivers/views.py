@@ -14,3 +14,14 @@ class DriverModelViewSet(ModelViewSet):
         if user.is_staff:
             return Driver.objects.all()
         return Driver.objects.filter(user=user)
+
+    def get_serializer_context(self):
+        return {"user_id": self.request.user.id}
+
+
+class CarModelViewSet(ModelViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
