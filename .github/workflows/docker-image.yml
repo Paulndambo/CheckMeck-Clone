@@ -1,8 +1,4 @@
 name: Docker Image CI
-stages: 
-  - build
-  - test
-  - deploy
 
 variables:
   - CONTAINER_IMAGE_NAME: checkmeck-backend:$(date +%s)
