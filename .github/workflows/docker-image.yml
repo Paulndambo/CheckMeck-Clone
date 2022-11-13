@@ -25,6 +25,9 @@ jobs:
 
   print-commit_text:
     runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@
+    - name: Print Commit Text
     script:
     - echo $COMMIT_TEXT
 
