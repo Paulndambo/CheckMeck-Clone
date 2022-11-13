@@ -19,9 +19,10 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("admin/", admin.site.urls),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-    path('', schema_view.with_ui('swagger',
-            cache_timeout=0), name='schema-swagger-ui'),
+    path("core/", include("apps.core.urls")),
+    path("drivers/", include("apps.drivers.urls")),
 ]
