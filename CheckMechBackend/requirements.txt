@@ -4,3 +4,4 @@ djoser
 djangorestframework-simplejwt
 drf_yasg
 gunicorn
+django-cors-headers
