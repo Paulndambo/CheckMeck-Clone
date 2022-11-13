@@ -1,9 +1,5 @@
 name: Docker Image CI
 
-variables:
-  - CONTAINER_IMAGE_NAME: checkmeck-backend:$(date +%s)
-  - COMMIT_TEXT: $CI_COMMIT_REF_SLUG-$CI_COMMIT_SHORT_SHA
-
 on:
   push:
     branches: [ "checkmeck-backend" ]
@@ -11,19 +7,13 @@ on:
     branches: [ "checkmeck-backend" ]
 
 jobs:
-  #build-docker-image:
-  #  runs-on: ubuntu-latest
-
-  #  steps:
-  #  - uses: actions/checkout@v3
-  #  - name: Build the Docker image
-  #    run: docker build . --file Dockerfile --tag $CONTAINER_IMAGE_NAME
-
-  print-commit_text:
+  build-docker-image:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@
-    - name: Print Commit Text
-      run: echo $COMMIT_TEXT
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag $CONTAINER_IMAGE_NAME
+
 
 
