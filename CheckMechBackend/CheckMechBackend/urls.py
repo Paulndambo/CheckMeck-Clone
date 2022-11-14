@@ -25,4 +25,6 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path("core/", include("apps.core.urls")),
     path("drivers/", include("apps.drivers.urls")),
+    path("garages/", include("apps.garages.urls")),
+
 ]

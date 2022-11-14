@@ -33,7 +33,7 @@ PAYMENT_METHODS = (
 class Garage(AbstractBaseModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    logo = models.ImageField(upload_to="logos/", null=True, blank=True)
+    #logo = models.ImageField(upload_to="logos/", null=True, blank=True)
     phone_number = models.CharField(max_length=255)
     dealership_affiliations = models.JSONField(null=True, blank=True)
     location = models.JSONField(null=True, blank=True)
