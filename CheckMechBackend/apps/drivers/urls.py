@@ -4,6 +4,7 @@ from .import views
 
 router = DefaultRouter()
 router.register("", views.DriverModelViewSet, basename="drivers")
+router.register("cars", views.CarModelViewSet, basename="cars")
 
 urlpatterns = [
     path("", include(router.urls)),

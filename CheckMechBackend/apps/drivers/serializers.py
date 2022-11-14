@@ -22,14 +22,15 @@ class DriverSerializer(serializers.ModelSerializer):
 
 
 class CarSerializer(serializers.ModelSerializer):
-    driver = DriverSerializer(read_only=True)
+    #driver = DriverSerializer(read_only=True)
 
     class Meta:
         model = Car
-        fields = ["number_plate", "car_color", "brand",
-                  "car_model", "year_manufactured", ""]
+        fields = "__all__"
 
     def create(self, validated_data):
         user_id = self.context['user_id']
         driver = Driver.objects.get(user_id=user_id)
         return Car.objects.create(driver=driver, **validated_data)
+
+
