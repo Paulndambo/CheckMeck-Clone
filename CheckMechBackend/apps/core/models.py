@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 FUEL_TYPES = (
@@ -22,3 +23,13 @@ class CarBrand(AbstractBaseModel):
 
     def __str__(self):
         return self.name
+
+class ProfilePhoto(AbstractBaseModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    new_photo = models.ImageField(
+        upload_to="profile_photos/", null=True, blank=True)
+    old_photo = models.ImageField(
+        upload_to="profile_photos/", null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username

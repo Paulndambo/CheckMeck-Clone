@@ -3,6 +3,19 @@ from django.conf import settings
 from django.db import models
 
 # Create your models here.
+GENDER_TYPES = (
+    ("female", "Female"),
+    ("male", "Male"),
+    ("other", "Other"),
+)
+
+MARITAL_STATUS_CHOICES = (
+    ("single", "Single"),
+    ("married", "Married"),
+    ("divorced", "Divorced"),
+    ("widowed", "Widowed"),
+)
+
 SERVICE_PROVIDER_TYPES = (
     ("garage", "Garage"),
     ("dealership", "Dealership"),
@@ -29,12 +42,29 @@ PAYMENT_METHODS = (
     ("card", "Card"),
 )
 
+class GarageOwner(AbstractBaseModel):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
+    id_number = models.CharField(max_length=255, null=True, blank=True)
+    kra_pin = models.CharField(max_length=255, null=True, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
+    gender = models.CharField(max_length=255, choices=GENDER_TYPES)
+    marital_status = models.CharField( max_length=255, choices=MARITAL_STATUS_CHOICES, null=True, blank=True)
+    postal_code = models.CharField(max_length=255, null=True, blank=True)
+    town = models.CharField(max_length=255, null=True, blank=True)
+    country = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Garage(AbstractBaseModel):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    owner = models.ForeignKey(GarageOwner, on_delete=models.SET_NULL, null=True, blank=True)
     name = models.CharField(max_length=255)
-    #logo = models.ImageField(upload_to="logos/", null=True, blank=True)
-    phone_number = models.CharField(max_length=255)
+    logo = models.ImageField(upload_to="logos/", null=True, blank=True)
+    phone_number = models.CharField(max_length=255, null=True, blank=True)
     dealership_affiliations = models.JSONField(null=True, blank=True)
     location = models.JSONField(null=True, blank=True)
     postal_address = models.CharField(max_length=255, null=True, blank=True)

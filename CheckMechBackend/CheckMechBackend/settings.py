@@ -28,12 +28,14 @@ INSTALLED_APPS = [
     "djoser",
     "drf_yasg",
     "corsheaders",
+    "django_filters",
 
 
     ##Our Apps
     "apps.core",
     "apps.drivers",
     "apps.garages",
+    "apps.sales",
     
 
 ]
