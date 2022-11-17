@@ -16,7 +16,7 @@ class GarageViewSet(viewsets.ModelViewSet):
     queryset = Garage.objects.all()
     serializer_class = GarageSerializer
     
-    
+
     def get_queryset(self):
         user = self.request.user
         owner = GarageOwner.objects.get(user=user)
@@ -55,6 +55,7 @@ class GarageOwnerModelViewSet(ModelViewSet):
         if user.is_staff:
             return GarageOwner.objects.all()
         return GarageOwner.objects.filter(user=user)
+        
     
 class GarageListModelViewSet(ModelViewSet):
     permission_classes = [AllowAny]
