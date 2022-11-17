@@ -126,6 +126,16 @@ REST_FRAMEWORK = {
     ),
 }
 
+SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5000),
@@ -142,7 +152,7 @@ SIMPLE_JWT = {
     'JWK_URL': None,
     'LEEWAY': 0,
 
-    'AUTH_HEADER_TYPES': ('Token',),
+    'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
@@ -179,4 +189,4 @@ EMAIL_HOST_PASSWORD = "aoppeqpkkjicxmur"
 SITE_EMAIL = "paulkadabo@gmail.com"
 
 
-CORS_ALLOW_ALL_ORIGINS: bool = True
+CORS_ALLOW_ALL_ORIGINS = True

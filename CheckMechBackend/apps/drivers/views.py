@@ -40,9 +40,10 @@ class CarModelViewSet(ModelViewSet):
 
 
 class CarListModelViewSet(ModelViewSet):
-    #permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser]
     queryset = Car.objects.all()
     serializer_class = CarListSerializer
+    
 
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['number_plate', 'brand', 'car_model',

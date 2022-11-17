@@ -79,7 +79,7 @@ class Garage(AbstractBaseModel):
 
 
 class Service(AbstractBaseModel):
-    provider = models.ForeignKey(Garage, on_delete=models.CASCADE, related_name="services")
+    garage = models.ForeignKey(Garage, on_delete=models.CASCADE, related_name="services")
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
     cost = models.DecimalField(max_digits=20, decimal_places=2, null=True, blank=True)

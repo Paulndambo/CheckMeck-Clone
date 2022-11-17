@@ -5,6 +5,7 @@ from .import views
 
 router = routers.DefaultRouter()
 router.register("drivers", views.DriverModelViewSet, basename="drivers")
+
 drivers_router = routers.NestedDefaultRouter(router, "drivers", lookup="driver")
 drivers_router.register("cars", views.CarModelViewSet, basename="cars")
 router.register("cars-list", views.CarListModelViewSet, basename="cars-list")
