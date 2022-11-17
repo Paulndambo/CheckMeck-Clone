@@ -30,7 +30,7 @@ jobs:
 
 
   build-docker-image:
-    needs: build-and-test-app
+    needs: build
     runs-on: ubuntu-latest # SO where jobs will execute.
     steps: # sequence tasks to do.
       - name: PULL REPOSITORY
@@ -41,5 +41,5 @@ jobs:
         with: #args for action, all of them are required.
           name-repository: personal-finance-backend #repository name, specify what the repository will be called on dockerhub.
           tag: v1 #tag for repository
-          docker-username: ${{ secrets.DOCKER_USERNAME }} # docker account - username
-          docker-password: ${{ secrets.DOCKER_PASSWORD }} # docker password, it should use access token
+          docker-username: otyheno #${{ secrets.DOCKER_USERNAME }} # docker account - username
+          docker-password: Jasquad33 #${{ secrets.DOCKER_PASSWORD }} # docker password, it should use access token
