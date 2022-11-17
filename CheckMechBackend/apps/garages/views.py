@@ -17,6 +17,7 @@ class GarageViewSet(viewsets.ModelViewSet):
     serializer_class = GarageSerializer
     
 
+    
     def get_queryset(self):
         user = self.request.user
         owner = GarageOwner.objects.get(user=user)
