@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "apps.drivers",
     "apps.garages",
     "apps.sales",
+    "apps.notifications",
     
 
 ]
@@ -190,3 +191,7 @@ SITE_EMAIL = "paulkadabo@gmail.com"
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# SMS CONFIGS/CREDENTIALS
+DEFAULT_NOTIFICATIONS_URL = "http://51.15.233.87:15432/message/queue"
+ALERT_EMAIL = 'alerts@meliora.tech'

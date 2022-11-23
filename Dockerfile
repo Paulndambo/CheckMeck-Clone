@@ -6,5 +6,8 @@ COPY ./CheckMechBackend/requirements.txt /code/
 RUN pip install -r requirements.txt
 COPY ./CheckMechBackend/ /code/
 
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+
 #CMD ["gunicorn", "--bind", "0.0.0.0:8000", "CheckMechBackend.wsgi"]
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
