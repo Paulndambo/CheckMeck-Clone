@@ -32,3 +32,18 @@ def send_notification(destinationAddress, content, notificationType):
         send_sms(destinationAddress, content)
     elif notificationType.lower() == 'EMAIL'.lower():
         send_email(destinationAddress, content)
+
+def request_service(garage_name, garage_phone_number, driver_name, driver_phone_number):
+    message = f"""
+        Hello {garage_name},\n Am requesting for your service, My car had broken down. Call me ASAP please if you are available. \nCall me on {driver_phone_number}. \n\nFrom CheckMech Services
+        """
+    data = {
+        "destinationAddress": garage_phone_number,
+        "sourceAddress": "SMSAfrica",
+        "message": message,
+        "messageType": "SMS"
+        
+    }
+    resp = requests.post(DEFAULT_NOTIFICATIONS_URL, json=data)
+    data = resp.json()
+    print(data)

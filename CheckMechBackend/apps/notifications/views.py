@@ -3,7 +3,7 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 from .models import NotificationMessage
 from .serializers import SmsSerializer
-from .send_sms import send_notification
+from .send_sms import send_notification, request_service
 
 # Create your views here.
 class SendSMSAPIView(generics.GenericAPIView):
@@ -17,7 +17,8 @@ class SendSMSAPIView(generics.GenericAPIView):
             phone_number = serializer.validated_data['destination_address']
             content = serializer.validated_data['content']
             try:
-                send_notification(phone_number, content, 'SMS')
+                #send_notification(phone_number, content, 'SMS')
+                request_service("South C Garage", phone_number, "Paul Ndambo", "0745491093")
             except Exception as e:
                 raise e
             print(phone_number)

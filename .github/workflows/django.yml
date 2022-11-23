@@ -27,6 +27,7 @@ jobs:
     - name: Run Tests
       run: |
         python CheckMechBackend/manage.py test
+        
   build-docker-image:
     needs: build
     runs-on: ubuntu-latest # SO where jobs will execute.
