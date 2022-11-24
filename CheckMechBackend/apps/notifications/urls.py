@@ -2,5 +2,5 @@ from django.urls import path, include
 from .import views
 
 urlpatterns = [
-    path("", views.SendSMSAPIView.as_view(), name="send-sms"),
+    path("request-service/", views.SendSMSAPIView.as_view(), name="request-service"),
 ]
