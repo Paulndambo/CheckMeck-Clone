@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 
     ##Third Party Apps
     "rest_framework",
-    "djoser",
+    #"djoser",
     "drf_yasg",
     "corsheaders",
     "django_filters",
@@ -171,15 +171,6 @@ SIMPLE_JWT = {
 }
 
 
-DJOSER = {
-    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL': '#/activate/{uid}/{token}',
-    'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {
-        #'activation': 'core.email.ActivationEmail'
-    }
-}
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST_USER = "paulkadabo@gmail.com"
