@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from datetime import datetime, timedelta
 from django.db import transaction
 from apps.garages.models import Garage, GarageOwner, GarageSubscription, Service
+from apps.notifications.send_sms import send_sms
 class GarageOnboardingMixin(object):
 
     def __init__(self, data):
@@ -18,6 +19,7 @@ class GarageOnboardingMixin(object):
             self.__create_garage()
             self.__create_garage_services()
             self.__create_garage_subscription()
+            self.__send_welcome_sms()
         except Exception as e:
             raise e
 
@@ -74,3 +76,12 @@ class GarageOnboardingMixin(object):
         subscription = GarageSubscription.objects.create(garage=garage)
         subscription.save()
         print("Freemium Garage Subscription Created!!")
+
+    def __send_welcome_sms(self):
+        phone_number = self.data["owner"]["phone_number"]
+        name  = self.data["owner"]["first_name"] + " " + self.data["owner"]["last_name"]
+        message = f"Hello, {name}, \nYou garage profile has been created successfully."
+        try:
+            send_sms(phone_number, message)
+        except Exception as e:
+            raise e

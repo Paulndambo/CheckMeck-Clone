@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from .serializers import GarageOnboardingSerializer
 from .mixins import GarageOnboardingMixin
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -13,6 +14,11 @@ class GarageOnboardingAPIView(generics.GenericAPIView):
 
     def post(self, request):
         data = request.data
+        email = data['owner']['email']
+        user = User.objects.filter(email=email).first()
+        if user:
+            return Response({"failed": "User with this email exists already"}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer = self.serializer_class(data=data)
         if serializer.is_valid(raise_exception=True):
             try:

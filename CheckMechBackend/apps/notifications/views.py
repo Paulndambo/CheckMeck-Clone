@@ -15,10 +15,13 @@ class SendSMSAPIView(generics.GenericAPIView):
         serializer = self.serializer_class(data=data)
         if serializer.is_valid(raise_exception=True):
             phone_number = serializer.validated_data['destination_address']
+            driver_name = serializer.validated_data['driver_name']
+            garage_name = serializer.validated_data['garage_name']
             content = serializer.validated_data['content']
+            driver_phone_number = serializer.validated_data['driver_phone_number']
             try:
                 #send_notification(phone_number, content, 'SMS')
-                request_service("South C Garage", phone_number, "Paul Ndambo", "0745491093")
+                request_service(garage_name, phone_number, driver_name, driver_phone_number)
             except Exception as e:
                 raise e
             print(phone_number)
