@@ -44,6 +44,7 @@ PAYMENT_METHODS = (
 
 class GarageOwner(AbstractBaseModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    email = models.EmailField(null=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
@@ -67,6 +68,8 @@ class Garage(AbstractBaseModel):
     phone_number = models.CharField(max_length=255, null=True, blank=True)
     dealership_affiliations = models.JSONField(null=True, blank=True)
     location = models.JSONField(null=True, blank=True)
+    location_description = models.TextField(null=True)
+    year_opened = models.CharField(max_length=255, null=True)
     postal_address = models.CharField(max_length=255, null=True, blank=True)
     town = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
