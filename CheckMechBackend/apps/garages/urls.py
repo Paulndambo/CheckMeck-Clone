@@ -6,7 +6,7 @@ from . import views
 
 router = routers.DefaultRouter()
 #router.register("garage-subscriptions", views.GarageSubscriptionModelViewSet, basename="garage-subscriptions")
-router.register("garages-list", views.GarageListModelViewSet, basename="garages-list")
+#router.register("garages-list", views.GarageListModelViewSet, basename="garages-list")
 router.register("garage-owners", views.GarageOwnerModelViewSet,basename="garage-owners")
 router.register('garages', views.GarageViewSet, basename='garages')
 garage_routers = routers.NestedDefaultRouter(router, "garages", lookup="garage")
@@ -17,4 +17,5 @@ garage_routers.register('services', views.ServiceViewSet, basename='services')
 urlpatterns = [
     path("", include(router.urls)),
     path("", include(garage_routers.urls)),
+    path("garages-list/", views.GarageListAPIView.as_view(), name="garages-list"),
 ]
