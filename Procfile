@@ -1,0 +1,1 @@
+web: gunicorn CheckMechBackend.wsgi --log-file -
