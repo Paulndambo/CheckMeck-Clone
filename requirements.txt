@@ -9,3 +9,4 @@ drf-nested-routers
 pillow
 django-filter
 geopy
+whitenoise
